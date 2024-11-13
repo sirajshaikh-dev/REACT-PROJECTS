@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
+import toast from 'react-hot-toast';
 
 function SignupForm({setIsLoggedIn}) {
     const navigate= useNavigate()
@@ -25,8 +26,15 @@ function SignupForm({setIsLoggedIn}) {
 
     function submitHandler(e) {
         e.preventDefault();
+        if (formData.createPassword != formData.confirmPassword) {
+            console.log(formData);  // Log data even password do not match
+            toast.error('password did not match')
+            return
+        }
         setIsLoggedIn(true)
+        toast.success('Account Created')
         navigate('/dashboard')
+        console.log(formData); //Log data only if pasword mathces
     }
   return (
     <> 

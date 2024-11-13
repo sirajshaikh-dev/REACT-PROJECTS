@@ -63,7 +63,7 @@ function LoginForm({setIsLoggedIn,}) {
                      {/* onClick={()=>setShowPassword(!showPassword)} */}
                     
                     {
-                    showPassword? <AiOutlineEye/> : <AiOutlineEyeInvisible/>
+                    showPassword? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
                     }
                 </span>
 
