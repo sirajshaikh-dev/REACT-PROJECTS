@@ -38,15 +38,15 @@ function SignupForm({setIsLoggedIn}) {
     }
   return (
     <> 
-        <form onSubmit={submitHandler}>
-            <div className='flex gap-3'>
-                <button>Student</button>
-                <button>Instructor</button>
-            </div>
+        <div className='flex gap-3'>
+            <button>Student</button>
+            <button>Instructor</button>
+        </div>
 
+        <form onSubmit={submitHandler}>
             <div>
                 <label >
-                    FirstName<sup>*</sup>
+                <p>First Name <sup>*</sup></p>
                     <input type="text"
                     required 
                     placeholder='Enter first name'
@@ -56,7 +56,7 @@ function SignupForm({setIsLoggedIn}) {
                     />
                 </label>
                 <label >
-                    Last Name<sup>*</sup>
+                <p>Last Name <sup>*</sup></p>
                     <input type="text" 
                     required
                     placeholder='Enter last name'
@@ -67,49 +67,48 @@ function SignupForm({setIsLoggedIn}) {
                 </label>
             </div>
             <div>
-            <label >
-                    Email Address<sup>*</sup>
-                    <input type="email" 
-                    required
-                    placeholder='Enter email address'
-                    name='email'
-                    value={FormData.value}
-                    onChange={changeHandler}
-                    />
+                <label >
+                    <p>Email address <sup>*</sup></p>
+                        <input type="email" 
+                        required
+                        placeholder='Enter email address'
+                        name='email'
+                        value={FormData.value}
+                        onChange={changeHandler}
+                        />
                 </label>
             </div>
 
             <div>
-            <label >
-                    Create Password<sup>*</sup>
-                    <input 
-                    type= {showCreatePassword ? "text" : "password"} 
-                    required
-                    placeholder='Enter Password'
-                    name='createPassword'
-                    value={FormData.value}
-                    onChange={changeHandler}
-                    />
+                <label >
+                        <p>Create Password <sup>*</sup></p>
+                            <input 
+                            type= {showCreatePassword ? "text" : "password"} 
+                            required
+                            placeholder='Enter Password'
+                            name='createPassword'
+                            value={FormData.value}
+                            onChange={changeHandler}
+                            />
 
-                <span onClick={()=>setshowCreatePassword(!showCreatePassword)}>
-                    {
-                       showCreatePassword 
-                       ? <AiOutlineEyeInvisible/> 
-                       : <AiOutlineEye/> 
-                    }
-                </span>
-            </label>
-            <label >
-                    Confirm Password<sup>*</sup>
-                    <input 
-                    type= {showConfirmPassword ? "text" : "password"} 
-                    required
-                    placeholder='Confirm Password'
-                    name='confirmPassword'
-                    value={FormData.value}
-                    onChange={changeHandler}
-                    />
-            </label>
+                    <span onClick={()=>setshowCreatePassword(!showCreatePassword)}>
+                        {
+                        showCreatePassword 
+                        ? <AiOutlineEyeInvisible/> 
+                        : <AiOutlineEye/> 
+                        }
+                    </span>
+                </label>
+                    <label >
+                    <p>confirmPassword <sup>*</sup></p>                    <input 
+                            type= {showConfirmPassword ? "text" : "password"} 
+                            required
+                            placeholder='Confirm Password'
+                            name='confirmPassword'
+                            value={FormData.value}
+                            onChange={changeHandler}
+                            />
+                    </label>
                     <span onClick={()=>setshowConfirmPassword(!showConfirmPassword)}>
                         {
                             showConfirmPassword ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
