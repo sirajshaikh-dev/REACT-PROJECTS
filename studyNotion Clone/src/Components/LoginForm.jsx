@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from "react-router-dom";
+import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
 
 function LoginForm({setIsLoggedIn,}) {
-
+    const [showPassword, setShowPassword] = useState(false)
     const navigate= useNavigate();
 
     const [formData,setFormData]= useState({
@@ -19,9 +21,16 @@ function LoginForm({setIsLoggedIn,}) {
         )
     }
 
+    function togglePassword( ) {
+        setShowPassword(!showPassword)
+        // OR // 
+        // setShowPassword(prev => !prev)
+    }
+
     function submitHandler(e) {
         e.preventDefault();
         setIsLoggedIn(true)
+        toast.success("Logged In")
         navigate('/dashboard')
     }
 
@@ -43,12 +52,25 @@ function LoginForm({setIsLoggedIn,}) {
                 <p> Enter Password <sup>*</sup></p>
                 <input 
                 required
-                type="password" 
+                type= {showPassword ? "text" :  "password"} 
                 placeholder='Enter Password'
                 onChange={changeHandler}
                 value={formData.password}
                 name='password'
                 />
+                <span onClick={togglePassword} >  
+                     {/* OR */}
+                     {/* onClick={()=>setShowPassword(!showPassword)} */}
+                    
+                    {
+                    showPassword? <AiOutlineEye/> : <AiOutlineEyeInvisible/>
+                    }
+                </span>
+
+                <Link to='#'>
+                    <p>Forgot Password</p>
+                </Link>
+                
             </label>
 
             <button>Sign In</button>

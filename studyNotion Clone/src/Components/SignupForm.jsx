@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
- 
+import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
+
 function SignupForm({setIsLoggedIn}) {
     const navigate= useNavigate()
+
+    const [showCreatePassword, setshowCreatePassword] = useState(false)
+    const [showConfirmPassword, setshowConfirmPassword] = useState(false)
+
     const [formData, setFormData] = useState({
         firstname: "",
         lastname : '',
@@ -33,7 +38,7 @@ function SignupForm({setIsLoggedIn}) {
 
             <div>
                 <label >
-                    FirstName <sup>*</sup>
+                    FirstName<sup>*</sup>
                     <input type="text"
                     required 
                     placeholder='Enter first name'
@@ -43,7 +48,7 @@ function SignupForm({setIsLoggedIn}) {
                     />
                 </label>
                 <label >
-                    Last Name <sup>*</sup>
+                    Last Name<sup>*</sup>
                     <input type="text" 
                     required
                     placeholder='Enter last name'
@@ -55,7 +60,7 @@ function SignupForm({setIsLoggedIn}) {
             </div>
             <div>
             <label >
-                    Email Address <sup>*</sup>
+                    Email Address<sup>*</sup>
                     <input type="email" 
                     required
                     placeholder='Enter email address'
@@ -68,18 +73,28 @@ function SignupForm({setIsLoggedIn}) {
 
             <div>
             <label >
-                    Create Password <sup>*</sup>
-                    <input type="password" 
+                    Create Password<sup>*</sup>
+                    <input 
+                    type= {showCreatePassword ? "text" : "password"} 
                     required
                     placeholder='Enter Password'
                     name='createPassword'
                     value={FormData.value}
                     onChange={changeHandler}
                     />
+
+                <span onClick={()=>setshowCreatePassword(!showCreatePassword)}>
+                    {
+                       showCreatePassword 
+                       ? <AiOutlineEyeInvisible/> 
+                       : <AiOutlineEye/> 
+                    }
+                </span>
             </label>
             <label >
-                    Confirm Password <sup>*</sup>
-                    <input type="password" 
+                    Confirm Password<sup>*</sup>
+                    <input 
+                    type= {showConfirmPassword ? "text" : "password"} 
                     required
                     placeholder='Confirm Password'
                     name='confirmPassword'
@@ -87,6 +102,11 @@ function SignupForm({setIsLoggedIn}) {
                     onChange={changeHandler}
                     />
             </label>
+                    <span onClick={()=>setshowConfirmPassword(!showConfirmPassword)}>
+                        {
+                            showConfirmPassword ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
+                        }
+                    </span>
             </div>
             <button>Create Account</button>
             

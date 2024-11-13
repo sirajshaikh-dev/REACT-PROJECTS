@@ -39,7 +39,7 @@ function Navbar({isLoggedIn, setIsLoggedIn}) {
         isLoggedIn &&
         <button onClick={()=>{
         setIsLoggedIn(false)
-        toast.success("Logged Oout")
+        toast.success("Logged Out")
         }}>
           <Link to='/'>Logout</Link>
         </button>
