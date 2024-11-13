@@ -1,7 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
-function LoginForm({}) {
+function LoginForm({setIsLoggedIn,}) {
+
+    const navigate= useNavigate();
 
     const [formData,setFormData]= useState({
         email: "",
@@ -16,34 +19,42 @@ function LoginForm({}) {
         )
     }
 
+    function submitHandler(e) {
+        e.preventDefault();
+        setIsLoggedIn(true)
+        navigate('/dashboard')
+    }
+
   return (
-    <div> 
-        <form>
-        <label >
-            <p>Email address <sup>*</sup></p>
-            <input 
-            required
-            type="email" 
-            placeholder='Enter email address'
-            onChange={changeHandler}
-            value={formData.email}
-            name='email'
-            />
-        </label>
-        <label >
-            <p> Enter Password <sup>*</sup></p>
-            <input 
-            required
-            type="password" 
-            placeholder='Enter Password'
-            onChange={changeHandler}
-            value={formData.password}
-            name='password'
-            />
-        </label>
+    <> 
+        <form onSubmit={submitHandler}>
+            <label >
+                <p>Email address <sup>*</sup></p>
+                <input 
+                required
+                type="email" 
+                placeholder='Enter email address'
+                onChange={changeHandler}
+                value={formData.email}
+                name='email'
+                />
+            </label>
+            <label >
+                <p> Enter Password <sup>*</sup></p>
+                <input 
+                required
+                type="password" 
+                placeholder='Enter Password'
+                onChange={changeHandler}
+                value={formData.password}
+                name='password'
+                />
+            </label>
+
+            <button>Sign In</button>
         </form>
         
-    </div>
+    </>
   )
 }
 

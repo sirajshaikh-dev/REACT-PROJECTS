@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
  
-function SignupForm() {
+function SignupForm({setIsLoggedIn}) {
+    const navigate= useNavigate()
     const [formData, setFormData] = useState({
         firstname: "",
         lastname : '',
@@ -15,10 +17,16 @@ function SignupForm() {
             [e.target.name]: e.target.value
         }))
     }
+
+    function submitHandler(e) {
+        e.preventDefault();
+        setIsLoggedIn(true)
+        navigate('/dashboard')
+    }
   return (
     <> 
-        <form >
-            <div>
+        <form onSubmit={submitHandler}>
+            <div className='flex gap-3'>
                 <button>Student</button>
                 <button>Instructor</button>
             </div>
@@ -81,9 +89,7 @@ function SignupForm() {
             </label>
             </div>
             <button>Create Account</button>
-            <div>------</div>
-                OR
-            <div>------</div>
+            
         </form>
     </>
   )

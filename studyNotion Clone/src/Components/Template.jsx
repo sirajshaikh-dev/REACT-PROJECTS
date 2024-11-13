@@ -17,18 +17,20 @@ function Template({title, description1, description2,
 
         {
           formtype=== "signup"
-          ?(<SignupForm/>)
-          :(<LoginForm/>)
+          ?(<SignupForm setIsLoggedIn={setIsLoggedIn}/>)
+          :(<LoginForm setIsLoggedIn={setIsLoggedIn}/>)
         }
+
+          <div className='flex'>
+            <div>-----------</div>
+                      OR 
+            <div>-----------</div>
+          </div>
+
+          <button>Sign up With Google</button>
+      </div>
+
       
-      <button>Sign In</button>
-      <div className='flex'>
-        <div>-----------</div>
-        <p>OR</p>
-        <div>-----------</div>
-      </div>
-      <button>Sign in With Google</button>
-      </div>
 
         <div>
           <img 
